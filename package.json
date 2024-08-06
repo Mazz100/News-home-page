@@ -1,0 +1,14 @@
+{
+  "name": "news-home-page",
+  "version": "1.0.0",
+  "description": "![Design preview for the News homepage coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "sass styles/style.scss build/style.css && sass styles/reset.scss build/reset.css",
+    "watch-css": "sass --watch styles/style.scss:build/style.css styles/reset.scss:build/reset.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

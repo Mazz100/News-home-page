@@ -1,21 +1,93 @@
-@use "reset";
-
-//variables
-$primary-color: hsl(35, 77%, 62%);
-$secondary-color: hsl(5, 85%, 63%);
-$Off-white: hsl(36, 100%, 99%);
-$Grayish-blue: hsl(233, 8%, 79%);
-$Dark-grayish-blue: hsl(236, 13%, 42%);
-$Very-dark-blue: hsl(240, 100%, 5%);
-
-@mixin Flex($direction, $align, $justify) {
-  display: flex;
-  flex-direction: $direction;
-  align-items: $align;
-  justify-content: $justify;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-//Generic css classes
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+  margin-block-start: 0;
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
 .button {
   cursor: pointer;
   border: none;
@@ -38,21 +110,22 @@ $Very-dark-blue: hsl(240, 100%, 5%);
   list-style-type: none;
 }
 
-//=====================//
-
 body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-
-  background-color: $Off-white;
-
-  @include Flex(column, center, center);
+  background-color: hsl(36, 100%, 99%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
 }
 
-// header section //
 header {
-  @include Flex(row, center, space-between);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   background: #fff;
   padding: 1rem;
@@ -66,9 +139,6 @@ nav {
   display: none;
 }
 
-//=======================//
-
-// main section //
 main {
   max-width: 22rem;
 }
@@ -91,7 +161,7 @@ main {
 }
 
 .main-button {
-  background-color: $secondary-color;
+  background-color: hsl(5, 85%, 63%);
   padding: 0.6rem;
   padding-inline: 1.5rem;
   font-weight: 800;
@@ -101,33 +171,38 @@ main {
 }
 
 .main-button:hover {
-  background-color: $Very-dark-blue;
-  color: $Off-white;
+  background-color: hsl(240, 100%, 5%);
+  color: hsl(36, 100%, 99%);
 }
 
-// New section
 .new-container {
-  background-color: $Very-dark-blue;
-  color: $Off-white;
+  background-color: hsl(240, 100%, 5%);
+  color: hsl(36, 100%, 99%);
   padding: 1rem;
   margin-bottom: 3rem;
 }
 
 .new-heading {
   font-size: 2rem;
-  color: $primary-color;
+  color: hsl(35, 77%, 62%);
   margin-bottom: 2rem;
 }
 
 .new-list {
-  @include Flex(column, start, start);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
   gap: 2.5rem;
 }
 
 .new-item {
-  @include Flex(column, start, start);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
   gap: 1rem;
-  border-bottom: 1px solid $Dark-grayish-blue;
+  border-bottom: 1px solid hsl(236, 13%, 42%);
   padding-bottom: 2rem;
 }
 
@@ -137,16 +212,14 @@ main {
 }
 
 .new-link:hover {
-  color: $primary-color;
+  color: hsl(35, 77%, 62%);
 }
 
 .new-text {
   font-size: 0.9375rem;
   opacity: 0.7;
 }
-//=====================================//
 
-// Popular section //
 .popular-container {
   margin-bottom: 2rem;
 }
@@ -173,7 +246,7 @@ main {
 .popular-span {
   grid-area: 1/2/2/3;
   font-size: 2rem;
-  color: $secondary-color;
+  color: hsl(5, 85%, 63%);
   font-weight: 700;
   margin-left: 1rem;
 }
@@ -184,7 +257,7 @@ main {
 }
 
 .popular-link:hover {
-  color: $secondary-color;
+  color: hsl(5, 85%, 63%);
 }
 
 .popular-text {
@@ -197,11 +270,10 @@ main {
 .popular-visually-hidden {
   white-space: none;
   overflow: hidden;
-  clip-path: (0 0 0 0);
+  clip-path: 0 0 0 0;
   width: 1px;
   height: 1px;
 }
-//=======================//
 
 .footer {
   width: 100%;
@@ -213,3 +285,5 @@ main {
   text-wrap: balance;
   font-size: 0.875rem;
 }
+
+/*# sourceMappingURL=style.css.map */
