@@ -98,6 +98,19 @@ header {
 .nav-list {
   display: none;
 }
+
+.nav-item {
+  opacity: 0.7;
+}
+
+.nav-link {
+  font-weight: 600;
+  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.nav-link:hover {
+  color: $secondary-color;
+}
 //============================//
 
 // main section //
@@ -106,7 +119,7 @@ main {
 }
 
 .web-evolution-wrapper {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .main-picture {
@@ -123,21 +136,24 @@ main {
 .main-paragraph {
   opacity: 0.7;
   font-size: 0.9375rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 36ch;
 }
 
-.main-button {
+.main-link {
   background-color: $secondary-color;
   padding: 0.6rem;
-  padding-inline: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.15rem;
+  padding-inline: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
   text-transform: uppercase;
+  transition: color 0.1s 0.1s ease-in, background-color 0.1s ease-in;
 }
 
-.main-button:hover {
+.main-link:hover {
   background-color: $Very-dark-blue;
   color: $Off-white;
+  font-weight: 600;
 }
 
 // featured section
@@ -145,7 +161,7 @@ main {
   background-color: $Very-dark-blue;
   color: $Off-white;
   padding: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .featured-heading {
@@ -163,6 +179,7 @@ main {
 .featured-item {
   @include Flex(column, start, start);
   gap: 1rem;
+  width: 100%;
   border-bottom: 1px solid $Dark-grayish-blue;
   padding-bottom: 2rem;
 }
@@ -170,6 +187,10 @@ main {
 .featured-item:last-of-type {
   border: none;
   padding: 0;
+}
+
+.featured-link {
+  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .featured-link:hover {
@@ -191,6 +212,8 @@ main {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
+  place-items: start;
+  place-content: center;
 }
 
 .popular-item {
@@ -217,6 +240,10 @@ main {
 .popular-heading {
   grid-area: 2/2/3/3;
   margin-left: 1rem;
+}
+
+.popular-link {
+  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .popular-link:hover {
@@ -246,13 +273,27 @@ main {
 
 //large screens
 
+@media (min-width: 48rem) {
+  header {
+    max-width: 34rem;
+  }
+
+  main {
+    max-width: 34rem;
+  }
+
+  .main-paragraph {
+    max-width: 42ch;
+  }
+} //Tablet screen
+
 @media (min-width: 80rem) {
   .hamburger-menu-button {
     display: none;
   }
 
   header {
-    max-width: 80rem;
+    max-width: 72rem;
     padding: 0;
     margin-bottom: 2rem;
   }
@@ -262,20 +303,15 @@ main {
     gap: 2rem;
   }
 
-  .nav-item {
-    opacity: 0.7;
-  }
-
   //===========================//
 
   main {
-    max-width: 80rem;
+    max-width: 72rem;
     display: grid;
     place-content: center;
-    gap: 3rem;
+    gap: 3rem 2rem;
 
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr auto;
   }
 
   .web-evolution-wrapper {
@@ -287,7 +323,6 @@ main {
     gap: 2rem;
 
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(1, 1fr);
 
     //grid placement on main
     grid-area: 1/1/2/3;
@@ -299,36 +334,48 @@ main {
   }
 
   .main-heading {
-    grid-area: 2/1/4/2;
-
     margin: 0;
     max-width: 8ch;
+    font-size: 3rem;
+  }
+
+  .main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 2rem;
+    //grid placement on main
+    grid-area: 2/2/3/3;
   }
 
   .main-paragraph {
-    grid-area: 2/2/3/3;
     margin: 0;
-    max-width: 34ch;
-    text-wrap: wrap;
-  }
-
-  .main-button {
-    grid-area: 3/2/4/3;
+    max-width: 36ch;
   }
   //==================//
 
   //Featured section
   .featured-container {
     margin: 0;
+
+    //grid placement on main
     grid-area: 1/3/2/4;
+  }
+
+  .featured-list {
+    padding: 0.7rem;
   }
 
   //Popular section
   .popular-container {
+    //grid placement on main
     grid-area: 2/1/2/4;
   }
+
   .popular-list {
-    @include Flex(row, center, center);
-    gap: 0;
+    display: grid;
+    place-content: center;
+
+    grid-template-columns: repeat(3, 1fr);
   }
 } //Desktop screen
