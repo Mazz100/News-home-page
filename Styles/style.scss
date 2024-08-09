@@ -65,15 +65,13 @@ body {
 
 // header section //
 header {
-  position: relative;
   @include Flex(row, center, space-between);
   width: 100%;
   background: #fff;
-  padding: 0.4rem;
+  padding: 0.6rem;
 }
 
 .logo-link {
-  padding: 0.5rem;
   border-radius: 4px;
 }
 
@@ -87,13 +85,10 @@ header {
 }
 
 .hamburger-menu-button {
-  position: inherit;
-  right: 0;
-  top: 10px;
   display: block;
-  padding: 0.5rem;
+  padding: 0.2rem;
   border-radius: 4px;
-  z-index: 10;
+  max-width: 3rem;
 }
 
 .hamburger-menu-button:focus-visible {
@@ -101,22 +96,54 @@ header {
   outline: solid 3px #000;
 }
 
-.nav-overlay {
-  display: block;
+.close-menu-button {
   position: fixed;
-  inset: 0;
-  background-color: hsla(0, 0%, 0%, 0.5);
-  z-index: 1;
+  top: 8px;
+  right: 12px;
+  z-index: 5;
+  padding: 0.2rem;
+  border-radius: 4px;
+  max-width: 2rem;
+}
+
+.close-menu-button:focus-visible {
+  outline-offset: 5px;
+  outline: solid 3px #000;
+}
+
+.nav-list-desktop {
+  display: none;
+}
+
+dialog {
+  border: 0;
+  background-color: transparent;
+
+  &::backdrop {
+    background-color: hsla(0, 0%, 0%, 0.601);
+    opacity: 1;
+  }
+
+  &[open],
+  &::backdrop {
+    animation: show 500ms ease-out;
+  }
 }
 
 .nav-list {
-  position: inherit;
+  position: fixed;
+  top: 0;
   right: 0;
   height: 100%;
   width: 75vw;
   @include Flex(column, start, center);
   gap: 1rem;
   padding: 1rem;
+
+  //Animation
+  animation-name: slideIn;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
 
   background-color: $Off-white;
 }
@@ -133,6 +160,26 @@ header {
 
 .nav-link:hover {
   color: $secondary-color;
+}
+
+//dialog backdrop animationv
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+}
+
+//Slide animation
+@keyframes slideIn {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 //============================//
 
@@ -308,10 +355,18 @@ main {
   .main-paragraph {
     max-width: 42ch;
   }
+
+  .nav-list {
+    align-items: center;
+  }
 } //Tablet screen
 
 @media (min-width: 80rem) {
   .hamburger-menu-button {
+    display: none;
+  }
+
+  .close-menu-button {
     display: none;
   }
 
@@ -321,16 +376,15 @@ main {
     margin-bottom: 2rem;
   }
 
-  .nav-overlay {
-    display: block;
-    position: static;
-    background-color: transparent;
+  dialog {
+    display: none;
   }
 
   .nav-list {
-    position: static;
-    width: 100%;
-    height: 100%;
+    display: none;
+  }
+
+  .nav-list-desktop {
     @include Flex(row, center, center);
     gap: 2rem;
     background-color: transparent;

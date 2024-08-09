@@ -134,18 +134,16 @@ body {
 }
 
 header {
-  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   background: #fff;
-  padding: 0.4rem;
+  padding: 0.6rem;
 }
 
 .logo-link {
-  padding: 0.5rem;
   border-radius: 4px;
 }
 
@@ -159,13 +157,10 @@ header {
 }
 
 .hamburger-menu-button {
-  position: inherit;
-  right: 0;
-  top: 10px;
   display: block;
-  padding: 0.5rem;
+  padding: 0.2rem;
   border-radius: 4px;
-  z-index: 10;
+  max-width: 3rem;
 }
 
 .hamburger-menu-button:focus-visible {
@@ -173,16 +168,40 @@ header {
   outline: solid 3px #000;
 }
 
-.nav-overlay {
-  display: block;
+.close-menu-button {
   position: fixed;
-  inset: 0;
-  background-color: hsla(0, 0%, 0%, 0.5);
-  z-index: 1;
+  top: 8px;
+  right: 12px;
+  z-index: 5;
+  padding: 0.2rem;
+  border-radius: 4px;
+  max-width: 2rem;
+}
+
+.close-menu-button:focus-visible {
+  outline-offset: 5px;
+  outline: solid 3px #000;
+}
+
+.nav-list-desktop {
+  display: none;
+}
+
+dialog {
+  border: 0;
+  background-color: transparent;
+}
+dialog::backdrop {
+  background-color: hsla(0, 0%, 0%, 0.601);
+  opacity: 1;
+}
+dialog[open], dialog::backdrop {
+  animation: show 500ms ease-out;
 }
 
 .nav-list {
-  position: inherit;
+  position: fixed;
+  top: 0;
   right: 0;
   height: 100%;
   width: 75vw;
@@ -192,6 +211,9 @@ header {
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
+  animation-name: slideIn;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
   background-color: hsl(36, 100%, 99%);
 }
 
@@ -209,6 +231,21 @@ header {
   color: hsl(5, 85%, 63%);
 }
 
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 main {
   max-width: 22rem;
 }
@@ -376,9 +413,15 @@ main {
   .main-paragraph {
     max-width: 42ch;
   }
+  .nav-list {
+    align-items: center;
+  }
 }
 @media (min-width: 80rem) {
   .hamburger-menu-button {
+    display: none;
+  }
+  .close-menu-button {
     display: none;
   }
   header {
@@ -386,15 +429,13 @@ main {
     padding: 0;
     margin-bottom: 2rem;
   }
-  .nav-overlay {
-    display: block;
-    position: static;
-    background-color: transparent;
+  dialog {
+    display: none;
   }
   .nav-list {
-    position: static;
-    width: 100%;
-    height: 100%;
+    display: none;
+  }
+  .nav-list-desktop {
     display: flex;
     flex-direction: row;
     align-items: center;
