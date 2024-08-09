@@ -21,42 +21,18 @@
 </head>
 
 <body>
-  <header>
-    <a class="logo-link" href="#">
-      <img class="logo-image" src="assets/images/logo.svg" alt="News homepage">
-    </a>
+  <div class="parent-container">
+    <header>
+      <a class="logo-link" href="#">
+        <img class="logo-image" src="assets/images/logo.svg" alt="News homepage">
+      </a>
 
-    <nav class="nav" role="navigation" aria-roledescription="header mobile navigation menu">
-      <button id="show-button" class="button hamburger-menu-button" aria-label="mobile menu" aria-expanded="false">
-        <img src="assets/images/icon-menu.svg" alt="">
-      </button>
-
-      <ul class="list nav-list-desktop">
-        <li class="list-item nav-item">
-          <a class="link nav-link" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="list-item nav-item">
-          <a class="link nav-link" href="#">New</a>
-        </li>
-        <li class="list-item nav-item">
-          <a class="link nav-link" href="#">Popular</a>
-        </li>
-        <li class="list-item nav-item">
-          <a class="link nav-link" href="#">Trending</a>
-        </li>
-        <li class="list-item nav-item">
-          <a class="link nav-link" href="#">Categories</a>
-        </li>
-      </ul>
-
-
-      <!--Navigation menu Mobile-->
-      <dialog>
-        <button id="close-button" class="button close-menu-button" aria-label="close menu">
-          <img src="assets/images/icon-menu-close.svg" alt="">
+      <nav class="nav">
+        <button id="show-button" class="button hamburger-menu-button" aria-label="mobile menu" aria-expanded="false">
+          <img src="assets/images/icon-menu.svg" alt="">
         </button>
 
-        <ul class="list nav-list">
+        <ul class="list nav-list-desktop">
           <li class="list-item nav-item">
             <a class="link nav-link" aria-current="page" href="#">Home</a>
           </li>
@@ -73,101 +49,125 @@
             <a class="link nav-link" href="#">Categories</a>
           </li>
         </ul>
-      </dialog>
 
-    </nav>
-  </header>
 
-  <main>
-    <div class="web-evolution-wrapper">
-      <h1 class="visually-hidden">News site home page</h1>
+        <!--Navigation menu Mobile-->
+        <dialog>
+          <button id="close-button" class="button close-menu-button" aria-label="close menu">
+            <img src="assets/images/icon-menu-close.svg" alt="">
+          </button>
 
-      <picture class="main-picture">
-        <source media="(min-width: 80rem)" srcset="assets/images/image-web-3-desktop.jpg">
-        <img src="assets/images/image-web-3-mobile.jpg" alt="">
-      </picture>
+          <ul class="list nav-list">
+            <li class="list-item nav-item">
+              <a class="link nav-link" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="list-item nav-item">
+              <a class="link nav-link" href="#">New</a>
+            </li>
+            <li class="list-item nav-item">
+              <a class="link nav-link" href="#">Popular</a>
+            </li>
+            <li class="list-item nav-item">
+              <a class="link nav-link" href="#">Trending</a>
+            </li>
+            <li class="list-item nav-item">
+              <a class="link nav-link" href="#">Categories</a>
+            </li>
+          </ul>
+        </dialog>
+      </nav>
+    </header>
 
-      <h2 class="visually-hidden">Featured article</h2>
-      <h3 class="main-heading">The Bright Future of Web 3.0?</h3>
+    <main>
+      <div class="web-evolution-wrapper">
+        <h1 class="visually-hidden">News site home page</h1>
 
-      <div class="main-wrapper">
-        <p class="main-paragraph">We dive into the next evolution of the web that claims to put the power of the
-          platforms
-          back into the hands of
-          the
-          people.
-          But is it really fulfilling its promise?</p>
+        <picture class="main-picture">
+          <source media="(min-width: 80rem)" srcset="assets/images/image-web-3-desktop.jpg">
+          <img src="assets/images/image-web-3-mobile.jpg" alt="">
+        </picture>
 
-        <a class="link main-link" href="#">Read More</a>
+        <h2 class="visually-hidden">Featured article</h2>
+        <h3 class="main-heading">The Bright Future of Web 3.0?</h3>
+
+        <div class="main-wrapper">
+          <p class="main-paragraph">We dive into the next evolution of the web that claims to put the power of the
+            platforms
+            back into the hands of
+            the
+            people.
+            But is it really fulfilling its promise?</p>
+
+          <a class="link main-link" href="#">Read More</a>
+        </div>
       </div>
-    </div>
 
 
-    <div class="featured-container">
-      <h2 class="featured-heading">New</h2>
+      <div class="featured-container">
+        <h2 class="featured-heading">New</h2>
 
-      <ul class="list featured-list">
-        <li class="list-item featured-item">
-          <h3 class="featured-link-heading">
-            <a class="link featured-link" href="#">Hydrogen VS Electric Cars</a>
-          </h3>
-          <p class="featured-text">Will hydrogen-fueled cars ever catch up to EVs?</p>
-        </li>
+        <ul class="list featured-list">
+          <li class="list-item featured-item">
+            <h3 class="featured-link-heading">
+              <a class="link featured-link" href="#">Hydrogen VS Electric Cars</a>
+            </h3>
+            <p class="featured-text">Will hydrogen-fueled cars ever catch up to EVs?</p>
+          </li>
 
-        <li class="list-item featured-item">
-          <h3 class="featured-link-heading">
-            <a class="link featured-link" href="#"> The Downsides of AI Artistry</a>
-          </h3>
-          <p class="featured-text">What are the possible adverse effects of on-demand AI image generation?</p>
-        </li>
+          <li class="list-item featured-item">
+            <h3 class="featured-link-heading">
+              <a class="link featured-link" href="#"> The Downsides of AI Artistry</a>
+            </h3>
+            <p class="featured-text">What are the possible adverse effects of on-demand AI image generation?</p>
+          </li>
 
-        <li class="list-item featured-item">
-          <h3 class="featured">
-            <a class="link featured-link" href="#">Is VC Funding Drying Up?</a>
-          </h3>
-          <p class="featured-text">Private funding by VC firms is down 50% YOY. We take a look at what that means.</p>
-        </li>
-      </ul>
-    </div>
+          <li class="list-item featured-item">
+            <h3 class="featured">
+              <a class="link featured-link" href="#">Is VC Funding Drying Up?</a>
+            </h3>
+            <p class="featured-text">Private funding by VC firms is down 50% YOY. We take a look at what that means.</p>
+          </li>
+        </ul>
+      </div>
 
-    <div class="popular-container">
-      <h2 class="visually-hidden">Popular news</h2>
+      <div class="popular-container">
+        <h2 class="visually-hidden">Popular news</h2>
 
-      <ol class="list popular-list">
-        <li class="list-item popular-item">
-          <img class="popular-image" src="assets/images/image-retro-pcs.jpg" alt="">
-          <span class="popular-span">01</span>
-          <h3 class="popular-heading">
-            <a class="link popular-link" href="#">Reviving Retro PCs</a>
-          </h3>
-          <p class="popular-text">
-            What happens when old PCs are given modern upgrades?
-          </p>
-        </li>
-        <li class="list-item popular-item">
-          <img class="popular-image" src="assets/images/image-top-laptops.jpg" alt="">
-          <span class="popular-span">02</span>
-          <h3 class="popular-heading">
-            <a class="link popular-link" href="#">Top 10 Laptops of 2022</a>
-          </h3>
-          <p class="popular-text">
-            Our best picks for various needs and budgets.
-          </p>
-        </li>
-        <li class="list-item popular-item">
-          <img class="popular-image" src="assets/images/image-gaming-growth.jpg" alt="">
-          <span class="popular-span">03</span>
-          <h3 class="popular-heading">
-            <a class="link popular-link" href="#">The Growth of Gaming</a>
-          </h3>
-          <p class="popular-text">
-            How the pandemic has sparked fresh opportunities.
-          </p>
-        </li>
-      </ol>
-    </div>
-  </main>
-
+        <ol class="list popular-list">
+          <li class="list-item popular-item">
+            <img class="popular-image" src="assets/images/image-retro-pcs.jpg" alt="">
+            <span class="popular-span">01</span>
+            <h3 class="popular-heading">
+              <a class="link popular-link" href="#">Reviving Retro PCs</a>
+            </h3>
+            <p class="popular-text">
+              What happens when old PCs are given modern upgrades?
+            </p>
+          </li>
+          <li class="list-item popular-item">
+            <img class="popular-image" src="assets/images/image-top-laptops.jpg" alt="">
+            <span class="popular-span">02</span>
+            <h3 class="popular-heading">
+              <a class="link popular-link" href="#">Top 10 Laptops of 2022</a>
+            </h3>
+            <p class="popular-text">
+              Our best picks for various needs and budgets.
+            </p>
+          </li>
+          <li class="list-item popular-item">
+            <img class="popular-image" src="assets/images/image-gaming-growth.jpg" alt="">
+            <span class="popular-span">03</span>
+            <h3 class="popular-heading">
+              <a class="link popular-link" href="#">The Growth of Gaming</a>
+            </h3>
+            <p class="popular-text">
+              How the pandemic has sparked fresh opportunities.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </main>
+  </div>
   <footer class="footer">
     <p class="footer-attribution">
       Challenge by <a class="link footer-link" href="https://www.frontendmentor.io?ref=challenge"

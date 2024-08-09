@@ -51,6 +51,12 @@ $Very-dark-blue: hsl(240, 100%, 5%);
   border-width: 0;
 }
 
+//Global focus-visible
+*:focus-visible {
+  outline-offset: 5px;
+  outline: solid 3px black;
+}
+
 //=====================//
 
 body {
@@ -60,7 +66,13 @@ body {
   background-color: $Off-white;
 
   @include Flex(column, center, center);
+
   min-height: 100vh;
+}
+
+.parent-container {
+  @include Flex(column, center, center);
+  flex: 1;
 }
 
 // header section //
@@ -75,11 +87,6 @@ header {
   border-radius: 4px;
 }
 
-.logo-link:focus-visible {
-  outline-offset: 5px;
-  outline: solid 3px #000;
-}
-
 .logo-image {
   max-width: 3rem;
 }
@@ -91,11 +98,6 @@ header {
   max-width: 3rem;
 }
 
-.hamburger-menu-button:focus-visible {
-  outline-offset: 5px;
-  outline: solid 3px #000;
-}
-
 .close-menu-button {
   position: fixed;
   top: 8px;
@@ -104,11 +106,6 @@ header {
   padding: 0.2rem;
   border-radius: 4px;
   max-width: 2rem;
-}
-
-.close-menu-button:focus-visible {
-  outline-offset: 5px;
-  outline: solid 3px #000;
 }
 
 .nav-list-desktop {
@@ -146,23 +143,44 @@ dialog {
   animation-timing-function: ease-out;
 
   background-color: $Off-white;
-}
 
-.nav-item {
-  font-size: 1.15rem;
-  opacity: 0.7;
+  .nav-item {
+    font-size: 1.15rem;
+    opacity: 0.7;
+  }
 }
 
 .nav-link {
+  position: relative;
   font-weight: 600;
-  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  outline: none;
+  padding-bottom: 0.3rem;
+  transform-origin: center;
+  transition: 0.2s;
+
+  &:hover,
+  &:focus {
+    color: $secondary-color;
+  }
+
+  &:hover:after,
+  &:focus::after {
+    width: 100%;
+  }
 }
 
-.nav-link:hover {
-  color: $secondary-color;
+.nav-link::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: $secondary-color;
+  transition: 0.2s;
 }
 
-//dialog backdrop animationv
+//dialog backdrop animation
 @keyframes show {
   from {
     opacity: 0;
@@ -218,12 +236,12 @@ main {
   letter-spacing: 0.2rem;
   text-transform: uppercase;
   transition: color 0.1s 0.1s ease-in, background-color 0.1s ease-in;
-}
 
-.main-link:hover {
-  background-color: $Very-dark-blue;
-  color: $Off-white;
-  font-weight: 600;
+  &:hover {
+    background-color: $Very-dark-blue;
+    color: $Off-white;
+    font-weight: 600;
+  }
 }
 
 // featured section
@@ -241,35 +259,36 @@ main {
   margin-bottom: 2rem;
 }
 
+.featured-text {
+  font-size: 0.9375rem;
+  opacity: 0.7;
+}
+
 .featured-list {
   @include Flex(column, start, start);
   gap: 2.5rem;
-}
 
-.featured-item {
-  @include Flex(column, start, start);
-  gap: 1rem;
-  width: 100%;
-  border-bottom: 1px solid $Dark-grayish-blue;
-  padding-bottom: 2rem;
-}
+  .featured-item {
+    @include Flex(column, start, start);
+    gap: 1rem;
+    width: 100%;
+    border-bottom: 1px solid $Dark-grayish-blue;
+    padding-bottom: 2rem;
 
-.featured-item:last-of-type {
-  border: none;
-  padding: 0;
+    &:last-of-type {
+      border: none;
+      padding: 0;
+    }
+  }
 }
 
 .featured-link {
   transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
+  outline-color: white;
 
-.featured-link:hover {
-  color: $primary-color;
-}
-
-.featured-text {
-  font-size: 0.9375rem;
-  opacity: 0.7;
+  &:hover {
+    color: $primary-color;
+  }
 }
 //=====================================//
 
@@ -284,14 +303,14 @@ main {
   gap: 2rem;
   place-items: start;
   place-content: center;
-}
 
-.popular-item {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-auto-rows: auto;
-  place-content: center;
-  place-items: start;
+  .popular-item {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-auto-rows: auto;
+    place-content: center;
+    place-items: start;
+  }
 }
 
 .popular-image {
@@ -312,33 +331,66 @@ main {
   margin-left: 1rem;
 }
 
-.popular-link {
-  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-.popular-link:hover {
-  color: $secondary-color;
-}
-
 .popular-text {
   grid-area: 3/2/4/3;
   font-size: 0.9375rem;
   margin-left: 1rem;
   opacity: 0.7;
 }
+
+.popular-link {
+  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
 //=======================//
 
 //Footer
 .footer {
   width: 100%;
-  padding: 0.5rem;
+  padding: 1rem;
+  background-color: $Very-dark-blue;
+
+  .footer-attribution {
+    text-align: center;
+    text-wrap: balance;
+    font-size: 0.875rem;
+    color: $Off-white;
+  }
 }
 
-.footer-attribution {
-  text-align: center;
-  text-wrap: balance;
-  font-size: 0.875rem;
+.footer-link {
+  position: relative;
+  font-weight: 700;
+  outline: none;
+  padding-bottom: 0.3rem;
+  transform-origin: center;
+  transition: 0.2s;
+
+  &:hover,
+  &:focus {
+    color: $secondary-color;
+  }
+
+  &:hover:after,
+  &:focus::after {
+    width: 100%;
+  }
 }
+
+.footer-link::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: $secondary-color;
+  transition: 0.2s;
+}
+
 //======================//
 
 //large screens

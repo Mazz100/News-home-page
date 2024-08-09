@@ -27,8 +27,8 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role=list],
-ol[role=list] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -122,6 +122,11 @@ textarea:not([rows]) {
   border-width: 0;
 }
 
+*:focus-visible {
+  outline-offset: 5px;
+  outline: solid 3px black;
+}
+
 body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -131,6 +136,14 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+}
+
+.parent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 }
 
 header {
@@ -147,11 +160,6 @@ header {
   border-radius: 4px;
 }
 
-.logo-link:focus-visible {
-  outline-offset: 5px;
-  outline: solid 3px #000;
-}
-
 .logo-image {
   max-width: 3rem;
 }
@@ -163,11 +171,6 @@ header {
   max-width: 3rem;
 }
 
-.hamburger-menu-button:focus-visible {
-  outline-offset: 5px;
-  outline: solid 3px #000;
-}
-
 .close-menu-button {
   position: fixed;
   top: 8px;
@@ -176,11 +179,6 @@ header {
   padding: 0.2rem;
   border-radius: 4px;
   max-width: 2rem;
-}
-
-.close-menu-button:focus-visible {
-  outline-offset: 5px;
-  outline: solid 3px #000;
 }
 
 .nav-list-desktop {
@@ -195,7 +193,8 @@ dialog::backdrop {
   background-color: hsla(0, 0%, 0%, 0.601);
   opacity: 1;
 }
-dialog[open], dialog::backdrop {
+dialog[open],
+dialog::backdrop {
   animation: show 500ms ease-out;
 }
 
@@ -216,19 +215,37 @@ dialog[open], dialog::backdrop {
   animation-timing-function: ease-out;
   background-color: hsl(36, 100%, 99%);
 }
-
-.nav-item {
+.nav-list .nav-item {
   font-size: 1.15rem;
   opacity: 0.7;
 }
 
 .nav-link {
+  position: relative;
   font-weight: 600;
-  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  outline: none;
+  padding-bottom: 0.3rem;
+  transform-origin: center;
+  transition: 0.2s;
+}
+.nav-link:hover,
+.nav-link:focus {
+  color: hsl(5, 85%, 63%);
+}
+.nav-link:hover:after,
+.nav-link:focus::after {
+  width: 100%;
 }
 
-.nav-link:hover {
-  color: hsl(5, 85%, 63%);
+.nav-link::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: hsl(5, 85%, 63%);
+  transition: 0.2s;
 }
 
 @keyframes show {
@@ -281,7 +298,6 @@ main {
   text-transform: uppercase;
   transition: color 0.1s 0.1s ease-in, background-color 0.1s ease-in;
 }
-
 .main-link:hover {
   background-color: hsl(240, 100%, 5%);
   color: hsl(36, 100%, 99%);
@@ -302,6 +318,11 @@ main {
   margin-bottom: 2rem;
 }
 
+.featured-text {
+  font-size: 0.9375rem;
+  opacity: 0.7;
+}
+
 .featured-list {
   display: flex;
   flex-direction: column;
@@ -309,8 +330,7 @@ main {
   justify-content: start;
   gap: 2.5rem;
 }
-
-.featured-item {
+.featured-list .featured-item {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -320,23 +340,17 @@ main {
   border-bottom: 1px solid hsl(236, 13%, 42%);
   padding-bottom: 2rem;
 }
-
-.featured-item:last-of-type {
+.featured-list .featured-item:last-of-type {
   border: none;
   padding: 0;
 }
 
 .featured-link {
   transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  outline-color: white;
 }
-
 .featured-link:hover {
   color: hsl(35, 77%, 62%);
-}
-
-.featured-text {
-  font-size: 0.9375rem;
-  opacity: 0.7;
 }
 
 .popular-container {
@@ -350,8 +364,7 @@ main {
   place-items: start;
   place-content: center;
 }
-
-.popular-item {
+.popular-list .popular-item {
   display: grid;
   grid-template-columns: auto auto;
   grid-auto-rows: auto;
@@ -377,14 +390,6 @@ main {
   margin-left: 1rem;
 }
 
-.popular-link {
-  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-.popular-link:hover {
-  color: hsl(5, 85%, 63%);
-}
-
 .popular-text {
   grid-area: 3/2/4/3;
   font-size: 0.9375rem;
@@ -392,15 +397,51 @@ main {
   opacity: 0.7;
 }
 
-.footer {
-  width: 100%;
-  padding: 0.5rem;
+.popular-link {
+  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.popular-link:hover {
+  color: hsl(5, 85%, 63%);
 }
 
-.footer-attribution {
+.footer {
+  width: 100%;
+  padding: 1rem;
+  background-color: hsl(240, 100%, 5%);
+}
+.footer .footer-attribution {
   text-align: center;
   text-wrap: balance;
   font-size: 0.875rem;
+  color: hsl(36, 100%, 99%);
+}
+
+.footer-link {
+  position: relative;
+  font-weight: 700;
+  outline: none;
+  padding-bottom: 0.3rem;
+  transform-origin: center;
+  transition: 0.2s;
+}
+.footer-link:hover,
+.footer-link:focus {
+  color: hsl(5, 85%, 63%);
+}
+.footer-link:hover:after,
+.footer-link:focus::after {
+  width: 100%;
+}
+
+.footer-link::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: hsl(5, 85%, 63%);
+  transition: 0.2s;
 }
 
 @media (min-width: 48rem) {
